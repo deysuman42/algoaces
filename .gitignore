@@ -1,5 +1,7 @@
 .streamlit/secrets.toml
 
+data/sample_data.xlsx
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
