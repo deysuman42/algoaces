@@ -1,6 +1,7 @@
 import os
 import sys
 import streamlit as st
+import pickle
 
 # Set up paths
 dir = os.getcwd()
@@ -8,7 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(dir, "./bin")))
 
 # Imports
 from vectordb import get_vector_db_from_persist_directory
-from retrievar import vector_retrievar_with_source, get_context
+from retrievar import vector_retrievar_with_source, get_context, ensemble_retriever
 from llm_generate import get_response_streaming
 from langchain_openai import AzureOpenAIEmbeddings
 
@@ -19,6 +20,12 @@ os.environ["AZURE_OPENAI_API_KEY"] = azure_openai_api_key
 os.environ["AZURE_OPENAI_ENDPOINT"] = azure_openai_endpoint
 api_version = st.secrets["API_VERSION"]
 gen_model = st.secrets["AZURE_OPENAI_GENERATION_MODEL"]
+
+# Load Chunked Data
+def load_docs_pickle(path="./data/chunked_rows.pkl"):
+    with open(path, "rb") as f:
+        return pickle.load(f)
+chunked_docs = load_docs_pickle()
 
 # Vector DB
 persist_directory = "./vector_db"
@@ -55,7 +62,7 @@ if prompt := st.chat_input("💬 Enter your query..."):
 
     # Retrieve context
     with st.spinner("🔎 Retrieving relevant context..."):
-        retrieved_docs, sources = vector_retrievar_with_source(vector_db=db, query=prompt, top_k=3)
+        retrieved_docs, sources = ensemble_retriever(chunked_docs, vector_db=db, query=prompt, top_k=10)
         context = get_context(retrieved_docs)
 
     with st.expander("📄 Context sources used"):
