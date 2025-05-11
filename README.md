@@ -1,9 +1,4 @@
 # 💬 Chatbot template
-
-A simple Streamlit app that shows how to build a chatbot using OpenAI's GPT-3.5.
-
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chatbot-template.streamlit.app/)
-
 ### How to run it on your own machine
 
 1. Install the requirements
@@ -17,3 +12,11 @@ A simple Streamlit app that shows how to build a chatbot using OpenAI's GPT-3.5.
    ```
    $ streamlit run streamlit_app.py
    ```
+
+3. Important links to create API keys.
+
+'''
+ A. https://portal.azure.com/#home
+ B. https://ai.azure.com/?tid=8661ff4c-8966-4fbc-ab9a-17d3dbea42fb
+ C. https://cloud.llamaindex.ai/project/5b7cb613-3603-4989-9da8-64f16c90fbda
+'''
