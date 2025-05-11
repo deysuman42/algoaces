@@ -13,6 +13,8 @@ def get_vector_db(persist_directory: str, embedding_function, collection_name: s
         collection_name=collection_name,
     )
 
+   
+
     return db
 
 def create_document_list(docs):

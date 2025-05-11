@@ -61,9 +61,10 @@ if prompt := st.chat_input("💬 Enter your query..."):
         st.markdown(f"🧑‍💻 **You:** {prompt}")
 
     # Retrieve context
-    with st.spinner("🔎 Retrieving relevant context..."):
-        retrieved_docs, sources = ensemble_retriever(chunked_docs, vector_db=db, query=prompt, top_k=10)
+    with st.expander("🔎 Retrieving relevant context..."):
+        retrieved_docs, sources = ensemble_retriever(chunked_docs, vector_db=db, query=prompt, top_k=1)
         context = get_context(retrieved_docs)
+        st.markdown(f"{context}")
 
     with st.expander("📄 Context sources used"):
         for source in sources:

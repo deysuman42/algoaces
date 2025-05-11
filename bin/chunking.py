@@ -18,10 +18,6 @@ def load_data(data):
     """
     # Load the Excel file
     # The mode can be "elements" or "elements_with_text"
-    # "elements" will load the file as a list of elements
-    # "elements_with_text" will load the file as a list of elements with text
-    # "elements" is the default mode
-    # "elements_with_text" is the default mode for UnstructuredExcelLoader
 
     loader = UnstructuredExcelLoader(data, mode="elements")
     docs = loader.load()

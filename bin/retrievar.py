@@ -23,7 +23,7 @@ def ensemble_retriever(docs, vector_db, query, top_k=2):
 
     # initialize the ensemble retriever
     ensemble_retriever = EnsembleRetriever(
-        retrievers=[bm25_retriever, vector_retriever], weights=[0.2, 0.8]
+        retrievers=[bm25_retriever, vector_retriever], weights=[0.5, 0.5]
     )
 
     retrieved_docs = ensemble_retriever.invoke(query)
